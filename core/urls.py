@@ -22,4 +22,6 @@ urlpatterns = [
     path('bandeja/', BandejaList.as_view()),
     path('bandeja/<int:pk>/', BandejaDetail.as_view()),
     path('login/', login),
+    path('sendEmail/<int:pk>/', sendEmail),
+    path('activate/<uidb64>/<token>/', activate, name='activate'),
 ]

@@ -51,6 +51,10 @@ class Usuario(models.Model):
     contrasenia = models.CharField(
         db_column='contrasenia'
     )
+    activo = models.BooleanField(
+        db_column='activo',
+        default=False
+    )
     carrera = models.ForeignKey(
         Carrera,
         db_column='carrera',

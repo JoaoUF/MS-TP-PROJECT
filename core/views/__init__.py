@@ -7,4 +7,4 @@ from .TipoUsuarioViews import TipoUsuarioList, TipoUsuarioDetail
 from .UniversidadViews import UniversidadList, UniversidadDetail
 from .UsuarioViews import UsuarioList, UsuarioDetail
 from .ViviendaViews import ViviendaList, ViviendaDetail
-from .Autenticate import login
+from .Autenticate import login, activate, sendEmail
