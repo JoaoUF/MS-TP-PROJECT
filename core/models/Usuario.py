@@ -55,6 +55,10 @@ class Usuario(models.Model):
         db_column='activo',
         default=False
     )
+    primerIngreso = models.BooleanField(
+        db_column='primer_ingreso',
+        default=False
+    )
     carrera = models.ForeignKey(
         Carrera,
         db_column='carrera',
