@@ -1,7 +1,8 @@
 from core.serializers import CarreraSerializer
 from core.models import Carrera
-from rest_framework import mixins
-from rest_framework import generics
+from rest_framework import mixins, generics, status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 class CarreraList(mixins.ListModelMixin,
@@ -34,3 +35,12 @@ class CarreraDetail(mixins.RetrieveModelMixin,
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+
+@api_view(['GET'])
+def CarreraExtra(request, universidadPK):
+
+    if request.method == 'GET':
+        carrera = Carrera.objects.filter(universidad=universidadPK)
+        serializer = CarreraSerializer(carrera, many=True)
+        return Response(serializer.data)

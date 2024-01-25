@@ -42,9 +42,9 @@ def sendEmail(request, pk):
     })
     email = EmailMessage(mail_subject, message, to=[usuario.correo])
     if email.send():
-        return Response({'message': 'El mensaje se envio de manera exitosa'}, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_200_OK)
     else:
-        return Response({'message': 'Tuvimos problemas mandando el mensaje'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])

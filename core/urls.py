@@ -7,6 +7,7 @@ urlpatterns = [
     path('tipo-usuario/<int:pk>/', TipoUsuarioDetail.as_view()),
     path('carrera/', CarreraList.as_view()),
     path('carrera/<int:pk>/', CarreraDetail.as_view()),
+    path('carrera/universidad/<int:universidadPK>/', CarreraExtra),
     path('universidad/', UniversidadList.as_view()),
     path('universidad/<int:pk>/', UniversidadDetail.as_view()),
     path('distrito/', DistritoList.as_view()),

@@ -1,5 +1,5 @@
 from .BandejaViews import BandejaList, BandejaDetail
-from .CarreraViews import CarreraList, CarreraDetail
+from .CarreraViews import CarreraList, CarreraDetail, CarreraExtra
 from .CategoriaViews import CategoriaList, CategoriaDetail
 from .DistritoViews import DistritoList, DistritoDetail
 from .EntradaViews import EntradaList, EntradaDetail

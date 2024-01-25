@@ -90,7 +90,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [os.environ.get('ALLOWED_ORIGINS')]
+CORS_ALLOWED_ORIGINS = [
+    os.environ['ALLOWED_ORIGINS'],
+]
 
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
