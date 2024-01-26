@@ -18,8 +18,6 @@ class UsuarioList(mixins.ListModelMixin,
         return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        print(request.data)
-
         newCarrera = Carrera.objects.get(pk=request.data['carrera'])
         newUniversidad = Universidad.objects.get(pk=newCarrera.idCarrera)
         if newUniversidad.extension != [i for i in request.data['correo'].split('@')][1]:

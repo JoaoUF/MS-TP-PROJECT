@@ -58,6 +58,5 @@ def activate(request, uidb64, token):
     if usuario is not None and account_activation_token.check_token(usuario, token):
         usuario.activo = True
         usuario.save()
-        return Response({'message': 'Se ha activado la cuenta'}, status=status.HTTP_200_OK)
-    else:
-        return Response({'message': 'Hubo problemas al activar la cuenta'}, status=status.HTTP_400_BAD_REQUEST)
+
+    return Response(status=status.HTTP_204_NO_CONTENT)
