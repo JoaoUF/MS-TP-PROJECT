@@ -49,7 +49,8 @@ class Usuario(models.Model):
         db_column='correo'
     )
     contrasenia = models.CharField(
-        db_column='contrasenia'
+        db_column='contrasenia',
+        max_length=128
     )
     activo = models.BooleanField(
         db_column='activo',

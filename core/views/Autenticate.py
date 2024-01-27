@@ -8,6 +8,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from passlib.handlers.django import django_pbkdf2_sha256
+from django.contrib.auth.hashers import make_password, check_password
 from core.models import Usuario
 from core.tokens import account_activation_token
 
@@ -17,16 +18,21 @@ def login(request):
     try:
         usuario = Usuario.objects.get(correo=request.data['usuario'])
 
-        if not django_pbkdf2_sha256.verify(request.data['contrasenia'], usuario.contrasenia):
+        # passw = '123'
+        # hspassw = make_password(passw)
+        # print(check_password(passw, hspassw))
+
+        # if not django_pbkdf2_sha256.verify(request.data['contrasenia'], str(usuario.contrasenia)):
+        if not check_password(request.data['contrasenia'], usuario.contrasenia):
             return Response({'message': 'Contraseña o correo invalidos'}, status=status.HTTP_400_BAD_REQUEST)
 
-        if usuario.activo == False:
-            return Response({'message': 'Active la cuenta'}, status=status.HTTP_400_BAD_REQUEST)
+        if not usuario.activo:
+            return Response({'message': 'Active la cuenta'}, status=status.HTTP_401_UNAUTHORIZED)
 
-        return Response({'message': 'Se ingreso correctamente'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'message': 'Se ingreso correctamente'}, status=status.HTTP_200_OK)
 
     except ObjectDoesNotExist:
-        return Response({'message': 'Contraseña o correo invalidos'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'message': 'No existe dicho usuario'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])
@@ -54,6 +60,7 @@ def activate(request, uidb64, token):
         usuario = Usuario.objects.get(pk=uid)
     except:
         usuario = None
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
     if usuario is not None and account_activation_token.check_token(usuario, token):
         usuario.activo = True
