@@ -29,6 +29,7 @@ class ViviendaDetail(mixins.RetrieveModelMixin,
         return self.retrieve(request, *args, **kwargs)
 
     def put(self, request, *args, **kwargs):
+        request.data._mutable = True
         request.data['usuarioModificacion'] = request.data.pop('usuario')
         return self.update(request, *args, **kwargs)
 

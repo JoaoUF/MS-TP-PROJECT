@@ -94,11 +94,21 @@ CORS_ALLOWED_ORIGINS = [
     os.environ['ALLOWED_ORIGINS'],
 ]
 
+ALLOWED_HOSTS = ['*']
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+STATIC_URL = '/files/'
+
+STATICFILES_DIRS = [ os.path.join(BASE_DIR, "files")]
+
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),"files")
+
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
 }
 
-# Emailing settings
+# EMAIL SETTINGS
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_FROM = os.environ.get('EMAIL_FROM')

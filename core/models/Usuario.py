@@ -14,24 +14,29 @@ class Usuario(models.Model):
     nombre = models.CharField(
         db_column='nombre',
         max_length=100,
+        blank=True,
         validators=[validate_is_string]
     )
     apellido = models.CharField(
         db_column='apellido',
         max_length=150,
+        blank=True,
         validators=[validate_is_string]
     )
     genero = models.BooleanField(
-        db_column='genero'
+        db_column='genero',
+        blank=True,
     )
     fechaNacimiento = models.DateTimeField(
         db_column='fecha_nacimiento',
+        blank=True,
         validators=[validate_born_date]
     )
     imagenPerfil = models.ImageField(
         upload_to='files/img/usuario',
         db_column='imagen_perfil',
-        default='core/img/prefil.png'
+        blank=True,
+        # default='core/img/prefil.png'
     )
     descripcion = models.TextField(
         db_column='descripcion',
@@ -46,28 +51,34 @@ class Usuario(models.Model):
     )
     correo = models.EmailField(
         unique=True,
+        blank=True,
         db_column='correo'
     )
     contrasenia = models.CharField(
         db_column='contrasenia',
+        blank=True,
         max_length=128
     )
     activo = models.BooleanField(
         db_column='activo',
+        blank=True,
         default=False
     )
     primerIngreso = models.BooleanField(
         db_column='primer_ingreso',
+        blank=True,
         default=False
     )
     carrera = models.ForeignKey(
         Carrera,
         db_column='carrera',
+        blank=True,
         on_delete=models.CASCADE
     )
     tipoUsuario = models.ForeignKey(
         TipoUsuario,
         db_column='tipo_usuario',
+        blank=True,
         on_delete=models.CASCADE
     )
     vivienda = models.ForeignKey(
@@ -96,9 +107,14 @@ class Usuario(models.Model):
         db_column='fecha_modificacion',
     )
 
+    # @property
+    # def get_imagenPerfil(self) -> str:
+    #     if self.imagenPerfil and hasattr(self.imagenPerfil,'url'):
+    #         return f'http://localhost:8000{self.imagenPerfil}'
+
     class Meta:
         db_table = 'MAE_USUARIO'
 
-    def save(self, *args, **kwargs):
-        self.contrasenia = make_password(self.contrasenia)
-        super(Usuario, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.contrasenia = make_password(self.contrasenia)
+    #     super(Usuario, self).save(*args, **kwargs)

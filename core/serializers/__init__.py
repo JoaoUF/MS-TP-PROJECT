@@ -1,7 +1,6 @@
 from .BandejaSerializer import BandejaSerializer
 from .CarreraSerializer import CarreraSerializer
 from .CategoriaSerializer import CategoriaSerializer
-from .DistritoSerializer import DistritoSerializer
 from .EntradaSerializer import EntradaSerializer
 from .TipoUsuarioSerializer import TipoUsuarioSerializer
 from .UniversidadSerializer import UniversidadSerializer

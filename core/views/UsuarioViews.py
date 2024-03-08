@@ -19,7 +19,7 @@ class UsuarioList(mixins.ListModelMixin,
 
     def post(self, request, *args, **kwargs):
         newCarrera = Carrera.objects.get(pk=request.data['carrera'])
-        newUniversidad = Universidad.objects.get(pk=newCarrera.idCarrera)
+        newUniversidad = Universidad.objects.get(pk=newCarrera.universidad.idUniversidad)
         if newUniversidad.extension != [i for i in request.data['correo'].split('@')][1]:
             return Response({'correo': 'El correo ingresado no corresponde a la universidad seleccionada.'}, status=status.HTTP_400_BAD_REQUEST)
 

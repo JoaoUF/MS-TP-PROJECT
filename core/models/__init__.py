@@ -1,7 +1,6 @@
 from .Bandeja import Bandeja
 from .Carrera import Carrera
 from .Categoria import Categoria
-from .Distrito import Distrito
 from .Entrada import Entrada
 from .TipoUsuario import TipoUsuario
 from .Universidad import Universidad

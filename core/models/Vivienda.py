@@ -1,5 +1,4 @@
 from django.db import models
-from .Distrito import Distrito
 from .CustomValidations import *
 
 
@@ -8,22 +7,14 @@ class Vivienda(models.Model):
         db_column='id_vivienda',
         primary_key=True
     )
-    cantidadHabitacion = models.IntegerField(
-        db_column='cantidad_habitacion',
+    latitud = models.FloatField(
+        db_column='latitud',
     )
-    cantidadBanio = models.IntegerField(
-        db_column='cantidad_banio',
+    longitud = models.FloatField(
+        db_column='longitud'
     )
-    estacionamiento = models.IntegerField(
-        db_column='estacionamiento'
-    )
-    presupuesto = models.IntegerField(
-        db_column='presupuesto'
-    )
-    distrito = models.ForeignKey(
-        Distrito,
-        on_delete=models.CASCADE,
-        db_column='distrito',
+    radio = models.IntegerField(
+        db_column='radio'
     )
     usuarioAdicion = models.CharField(
         db_column='usuario_adicion',

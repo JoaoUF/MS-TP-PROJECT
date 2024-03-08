@@ -1,7 +1,6 @@
 from django.urls import path, include
 from core.views import *
 
-
 urlpatterns = [
     path('tipo-usuario/', TipoUsuarioList.as_view()),
     path('tipo-usuario/<int:pk>/', TipoUsuarioDetail.as_view()),
@@ -10,8 +9,6 @@ urlpatterns = [
     path('carrera/universidad/<int:universidadPK>/', CarreraExtra),
     path('universidad/', UniversidadList.as_view()),
     path('universidad/<int:pk>/', UniversidadDetail.as_view()),
-    path('distrito/', DistritoList.as_view()),
-    path('distrito/<int:pk>/', DistritoDetail.as_view()),
     path('vivienda/', ViviendaList.as_view()),
     path('vivienda/<int:pk>/', ViviendaDetail.as_view()),
     path('usuario/', UsuarioList.as_view()),
